@@ -346,18 +346,24 @@ if check_mot_de_passe():
                 
             with col3 : 
                 with st.popover("Comprendre la logique d'optimisation") :
-                    st.markdown(f"### Explications")
-                    st.write("L'optimiseur calcule l'itinéraire le plus efficace en jonglant avec les temps de trajet, les temps d'intervention et les plages d'ouverture de chaque site et du technicien.")
-                    st.write('**1. Construire la matinée la plus "rentable" :**' )
-                    st.write("L'outil teste intelligemment différentes combinaisons de sites pour construire la matinée la plus productive possible. Il va chercher à :")
-                    st.markdown("""
-                    *   Prioriser les sites qui ne sont **ouverts que le matin**.
-                    *   Maximiser le **nombre de sites visités** et le **temps de travail effectif** avant la pause déjeuner.
-                    """)
-                    st.write('**2. Organiser l\'après-midi :**')
-                    st.write("Une fois la meilleure tournée du matin trouvée, il planifie le reste des visites en tenant compte de la fin de la dernière intervention, de la **pause déjeuner** (= 1h30), et des horaires des sites restants.")
+                    st.markdown(f"### Comment fonctionne l'optimisation ?")
+                    st.write("Notre optimiseur intelligent a pour mission de vous concocter l'itinéraire le plus efficace possible. Pour cela, il jongle avec de multiples paramètres : les temps de trajet entre chaque site, la durée estimée de chaque intervention, les plages d'ouverture spécifiques de chaque site, et bien sûr, votre propre planning de travail.")
                     st.write("")
-                    st.write("Si plusieurs itinéraires sont possibles, l'outil privilégiera systématiquement celui qui permet de terminer la journée le **plus tôt**.")
+                    st.write("Il fonctionne en deux modes principaux :")
+                    st.write("")
+                    st.write('**1. Optimisation complète (calcul initial ou "recalculer")**')
+                    st.write("Lorsque vous lancez une optimisation initiale ou que vous décidez de 'recalculer' l'ensemble de votre tournée, l'outil met les bouchées doubles. Il explore alors *toutes les combinaisons possibles* d'itinéraires pour trouver la solution optimale.")
+                    st.write("Ce processus permet de construire la journée la plus 'rentable' en cherchant à :")
+                    st.markdown("""
+                    *   **Prioriser les sites** qui ne sont ouverts que le matin, pour s'assurer de ne rater aucune opportunité.
+                    *   **Maximiser le nombre de sites visités** et le **temps de travail effectif** avant la pause déjeuner.
+                    """)
+                    st.write("Il planifie ensuite l'après-midi en tenant compte de la fin de la dernière intervention du matin, de votre **pause déjeuner** (estimée à 1h30) et des horaires des sites restants. Si plusieurs itinéraires sont aussi performants, il privilégiera systématiquement celui qui vous permet de terminer votre journée le **plus tôt**.")
+                    st.write("💡 *Bon à savoir :* Plus le nombre de sites est élevé, plus le nombre de combinaisons à tester est gigantesque (par exemple, pour 5 sites, il y a 120 combinaisons ; pour 7 sites, c'est plus de 5000 !). C'est pourquoi cette phase peut prendre un peu de temps.")
+                    st.write("")
+                    st.write('**2. Ajout manuel d\'un site à la tournée**')
+                    st.write("Si vous souhaitez ajouter un site à une tournée déjà calculée ou modifiée manuellement, l'optimiseur adopte une approche différente pour vous offrir plus de flexibilité et de rapidité. Au lieu de recalculer la tournée entière (ce qui serait très long pour un grand nombre de sites), il va simplement **insérer le nouveau site à la position que vous avez indiquée**.")
+                    st.write("Cette méthode vous permet de peaufiner votre tournée sans attendre une nouvelle optimisation complète, en vous laissant le contrôle sur l'emplacement précis des ajouts.")
 
             st.session_state.sites_courants["Heure_Debut"] = None
             st.session_state.sites_courants["Heure_Fin"] = None
