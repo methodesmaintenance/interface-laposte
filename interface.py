@@ -346,24 +346,18 @@ if check_mot_de_passe():
                 
             with col3 : 
                 with st.popover("Comprendre la logique d'optimisation") :
-                    st.markdown(f"### Comment fonctionne l'optimisation ?")
-                    st.write("Notre optimiseur intelligent a pour mission de vous concocter l'itinéraire le plus efficace possible. Pour cela, il jongle avec de multiples paramètres : les temps de trajet entre chaque site, la durée estimée de chaque intervention, les plages d'ouverture spécifiques de chaque site, et bien sûr, votre propre planning de travail.")
+                    st.write("Pour optimiser, le calcul prend en compte les temps de trajet entre chaque site, la durée estimée de chaque intervention, les plages d'ouverture spécifiques de chaque site, les horaires du technicien.")
                     st.write("")
                     st.write("Il fonctionne en deux modes principaux :")
                     st.write("")
-                    st.write('**1. Optimisation complète (calcul initial ou "recalculer")**')
-                    st.write("Lorsque vous lancez une optimisation initiale ou que vous décidez de 'recalculer' l'ensemble de votre tournée, l'outil met les bouchées doubles. Il explore alors *toutes les combinaisons possibles* d'itinéraires pour trouver la solution optimale.")
-                    st.write("Ce processus permet de construire la journée la plus 'rentable' en cherchant à :")
-                    st.markdown("""
-                    *   **Prioriser les sites** qui ne sont ouverts que le matin, pour s'assurer de ne rater aucune opportunité.
-                    *   **Maximiser le nombre de sites visités** et le **temps de travail effectif** avant la pause déjeuner.
-                    """)
-                    st.write("Il planifie ensuite l'après-midi en tenant compte de la fin de la dernière intervention du matin, de votre **pause déjeuner** (estimée à 1h30) et des horaires des sites restants. Si plusieurs itinéraires sont aussi performants, il privilégiera systématiquement celui qui vous permet de terminer votre journée le **plus tôt**.")
-                    st.write("💡 *Bon à savoir :* Plus le nombre de sites est élevé, plus le nombre de combinaisons à tester est gigantesque (par exemple, pour 5 sites, il y a 120 combinaisons ; pour 7 sites, c'est plus de 5000 !). C'est pourquoi cette phase peut prendre un peu de temps.")
+                    st.write('**Optimisation complète (calcul initial ou "recalculer")**')
+                    st.write("Lors de l'optimisation initiale ou avec l'utilisation du bouton 'recalculer', l'outil explore *toutes les combinaisons possibles* d'itinéraires pour trouver la solution optimale.")
+                    st.write("Plus le nombre de sites est élevé, plus le nombre de combinaisons à tester est grand (par exemple, pour 5 sites, il y a 120 combinaisons ; pour 7 sites, c'est plus de 5000 !)")
                     st.write("")
                     st.write('**2. Ajout manuel d\'un site à la tournée**')
-                    st.write("Si vous souhaitez ajouter un site à une tournée déjà calculée ou modifiée manuellement, l'optimiseur adopte une approche différente pour vous offrir plus de flexibilité et de rapidité. Au lieu de recalculer la tournée entière (ce qui serait très long pour un grand nombre de sites), il va simplement **insérer le nouveau site à la position que vous avez indiquée**.")
-                    st.write("Cette méthode vous permet de peaufiner votre tournée sans attendre une nouvelle optimisation complète, en vous laissant le contrôle sur l'emplacement précis des ajouts.")
+                    st.write("Pour ajouter un site à une tournée déjà calculée, au lieu de recalculer la tournée entière, il va simplement **insérer le nouveau site à la position indiquée**.")
+
+                    st.write("💡Le bouton recalculer doit être utilisé le moins possible lorsqu'il y a beaucoup de site")
 
             st.session_state.sites_courants["Heure_Debut"] = None
             st.session_state.sites_courants["Heure_Fin"] = None
